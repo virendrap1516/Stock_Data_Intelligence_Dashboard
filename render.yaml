@@ -1,0 +1,12 @@
+services:
+  - type: web
+    name: StockData_Intelligence_Dashboard
+    env: python
+    region: Virginia         
+    branch: main
+    plan: free
+    buildCommand: pip install -r backend/requirements.txt
+    startCommand: uvicorn backend.app:app --host 0.0.0.0 --port $PORT
+    envVars:
+      - key: DATABASE_URL
+        value: sqlite:///./backend/data/stocks.db
